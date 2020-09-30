@@ -1,5 +1,8 @@
 <template>
-  <div id="cliente" v-if="cliente">
+  <div
+    :class="{ cliente: !isPremium, 'cliente-premium': isPremium }"
+    v-if="cliente"
+  >
     <h4>Nome: {{ cliente.nome }}</h4>
     <h3>Email: {{ cliente.email }}</h3>
     <h3 v-if="showAge">Idade: {{ cliente.idade }}</h3>
@@ -11,7 +14,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      isPremium: true,
+    };
   },
   props: {
     cliente: Object,
@@ -21,9 +26,17 @@ export default {
 </script>
 
 <style scoped>
-#cliente {
+.cliente {
   color: rgb(6, 47, 80);
-  background-color: rgb(192, 236, 252);
+  background-color: rgb(117, 186, 243);
+  padding: 4px;
+  max-width: 50%;
+  margin: 20px auto;
+}
+
+.cliente-premium {
+  color: rgb(117, 186, 243);
+  background-color: rgb(6, 47, 80);
   padding: 4px;
   max-width: 50%;
   margin: 20px auto;
