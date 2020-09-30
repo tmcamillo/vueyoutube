@@ -1,8 +1,10 @@
 <template>
-  <div id="cliente">
+  <div id="cliente" v-if="cliente">
     <h4>Nome: {{ cliente.nome }}</h4>
     <h3>Email: {{ cliente.email }}</h3>
-    <h3>Idade: {{ cliente.idade }}</h3>
+    <h3 v-if="showAge">Idade: {{ cliente.idade }}</h3>
+    <h3 v-else>O usuário escondeu a idade!</h3>
+    <h3 v-show="showAge">saiba mais</h3>
   </div>
 </template>
 
@@ -12,10 +14,8 @@ export default {
     return {};
   },
   props: {
-    nome: String,
-    email: String,
-    idade: Number,
     cliente: Object,
+    showAge: Boolean,
   },
 };
 </script>
@@ -23,7 +23,7 @@ export default {
 <style scoped>
 #cliente {
   color: rgb(6, 47, 80);
-  background-color: rgb(244, 252, 255);
+  background-color: rgb(192, 236, 252);
   padding: 4px;
   max-width: 50%;
   margin: 20px auto;

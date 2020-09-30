@@ -3,9 +3,8 @@
     <h1>Guia Clientes</h1>
     <input type="text" v-model="clienteMichael.nome" />
     <input type="text" v-model="clienteMichael.email" />
-    <Cliente :cliente="clienteMichael" />
-    <Cliente nome="Pam" email="email@email.com" idade="56" />
-    <Cliente nome="Dwigth" email="email@email.com" idade="10" />
+    <Cliente :cliente="clienteMichael" :showAge="true" />
+    <Cliente :cliente="clienteMichael" :showAge="false" />
   </div>
 </template>
 
