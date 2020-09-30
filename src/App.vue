@@ -1,19 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Guia Clientes</h1>
+    <input type="text" v-model="clienteMichael.nome" />
+    <input type="text" v-model="clienteMichael.email" />
+    <Cliente :cliente="clienteMichael" />
+    <Cliente nome="Pam" email="email@email.com" idade="56" />
+    <Cliente nome="Dwigth" email="email@email.com" idade="10" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Cliente from "./components/Cliente";
+// import Produto from "./components/Produto";
 
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      nomeDoMichael: "Michael Scott",
+      clienteMichael: {
+        nome: "Michael",
+        email: "michael@gmail.com",
+        idade: "9",
+      },
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    Cliente,
+    // Produto,
+  },
+};
 </script>
 
 <style>
