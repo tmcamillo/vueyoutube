@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <h1>Guia Clientes</h1>
-    <Cliente :cliente="clienteMichael" :showAge="true" />
-    <Cliente :cliente="clienteMichael" :showAge="false" />
+    <h1>Cadastro</h1>
+    <small class="name-error" v-show="deuErro">O nome é inválido, tente novamente</small>
+    <input type="text" placeholder="nome" v-model="nameField" />
+    <input type="email" placeholder="email" v-model="emailField" />
+    <input type="number" placeholder="idade" v-model="ageField" />
+    <button @click="cadastrarUsuario">Cadastrar</button>
 
     <div v-for="(cliente, index) in clientes" :key="cliente.id">
       <p>{{ index + 1 }}</p>
-      <input type="text" v-model="clienteMichael.nome" />
-      <input type="text" v-model="clienteMichael.email" />
       <Cliente :cliente="cliente" />
     </div>
   </div>
@@ -20,12 +21,10 @@ export default {
   name: "App",
   data() {
     return {
-      nomeDoMichael: "Michael Scott",
-      clienteMichael: {
-        nome: "Michael",
-        email: "michael@gmail.com",
-        idade: "9",
-      },
+      deuErro: false,
+      nameField: "",
+      emailField: "",
+      ageField: "",
       clientes: [
         {
           id: 1,
@@ -63,6 +62,17 @@ export default {
   components: {
     Cliente,
   },
+  methods: {
+    cadastrarUsuario() {
+      if (this.nameField == "" ||this.nameField == "" ||this.nameField.length == "") {
+        this.deuErro = true;
+      } else {
+        this.clientes.push({nome: this.nameField, email: this.emailField, idade: this.ageField, id: Date.now()});
+        (this.nameField = ""), (this.emailField = ""), (this.ageField = "");
+        this.deuErro = false;
+      }
+    },
+  },
 };
 </script>
 
@@ -74,5 +84,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.name-error {
+  color: red;
 }
 </style>
