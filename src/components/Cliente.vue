@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */
 <template>
   <div
     :class="{ cliente: !isPremium, 'cliente-premium': isPremium }"
@@ -8,6 +9,7 @@
     <h3 v-if="showAge">Idade: {{ cliente.idade }}</h3>
     <h3 v-else>O usuário escondeu a idade!</h3>
     <h3 v-show="showAge">saiba mais</h3>
+    <button @click="mudarCor($event)">Mudar cor</button>
   </div>
 </template>
 
@@ -15,12 +17,18 @@
 export default {
   data() {
     return {
-      isPremium: false,
+      isPremium: true,
     };
   },
   props: {
     cliente: Object,
     showAge: Boolean,
+  },
+  methods: {
+    mudarCor($event) {
+      console.log($event);
+      this.isPremium = !this.isPremium;
+    },
   },
 };
 </script>

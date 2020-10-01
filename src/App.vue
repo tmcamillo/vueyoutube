@@ -15,7 +15,6 @@
 
 <script>
 import Cliente from "./components/Cliente";
-// import Produto from "./components/Produto";
 
 export default {
   name: "App",
@@ -63,7 +62,6 @@ export default {
   },
   components: {
     Cliente,
-    // Produto,
   },
 };
 </script>
