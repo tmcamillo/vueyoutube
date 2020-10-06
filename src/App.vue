@@ -9,7 +9,7 @@
 
     <div v-for="(cliente, index) in clientes" :key="cliente.id">
       <p>{{ index + 1 }}</p>
-      <Cliente :cliente="cliente" />
+      <Cliente :cliente="cliente" @meDelete="deletarUsuario($event)"/>
     </div>
   </div>
 </template>
@@ -33,25 +33,25 @@ export default {
           idade: "45",
         },
         {
-          d: 3,
+          id: 3,
           nome: "Dwight",
           email: "dwight@gmail.com",
           idade: "10",
         },
         {
-          d: 67,
+          id: 67,
           nome: "Jim",
           email: "jim@gmail.com",
           idade: "45",
         },
         {
-          d: 5,
+          id: 5,
           nome: "Petra",
           email: "petra@gmail.com",
           idade: "33",
         },
         {
-          d: 55,
+          id: 55,
           nome: "Valery",
           email: "valery@gmail.com",
           idade: "2",
@@ -72,6 +72,11 @@ export default {
         this.deuErro = false;
       }
     },
+    deletarUsuario($event) { //passando dados do filho para o pai com eventos
+      let id = $event.idCliente;
+      let novoArray = this.clientes.filter(cliente => cliente.id != id);
+      this.clientes = novoArray;
+    }
   },
 };
 </script>

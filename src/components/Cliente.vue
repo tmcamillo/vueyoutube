@@ -10,6 +10,8 @@
     <h3 v-else>O usuário escondeu a idade!</h3>
     <h3 v-show="showAge">saiba mais</h3>
     <button @click="mudarCor($event)">Mudar cor</button>
+    <button @click="emitirEventoDelete()">Deletar</button>
+
   </div>
 </template>
 
@@ -29,24 +31,32 @@ export default {
       console.log($event);
       this.isPremium = !this.isPremium;
     },
+    emitirEventoDelete(){
+      console.log('emitindo do filho');
+      this.$emit("meDelete", {idCliente: this.cliente.id, curso: 'Formacao Vue', emPromocao: true, component: this} );
+    },
+    testar(){
+      console.log("testando para valer!")
+      alert("Isso é um alert")
+    }
   },
 };
 </script>
 
 <style scoped>
-.cliente {
-  color: rgb(6, 47, 80);
-  background-color: rgb(117, 186, 243);
-  padding: 4px;
-  max-width: 50%;
-  margin: 20px auto;
-}
+  .cliente {
+    color: rgb(6, 47, 80);
+    background-color: rgb(117, 186, 243);
+    padding: 4px;
+    max-width: 50%;
+    margin: 20px auto;
+  }
 
-.cliente-premium {
-  color: rgb(117, 186, 243);
-  background-color: rgb(6, 47, 80);
-  padding: 4px;
-  max-width: 50%;
-  margin: 20px auto;
-}
+  .cliente-premium {
+    color: rgb(117, 186, 243);
+    background-color: rgb(6, 47, 80);
+    padding: 4px;
+    max-width: 50%;
+    margin: 20px auto;
+  }
 </style>
