@@ -4,7 +4,7 @@
     :class="{ cliente: !isPremium, 'cliente-premium': isPremium }"
     v-if="cliente"
   >
-    <h4>Nome: {{ cliente.nome }}</h4>
+    <h4>Nome: {{ cliente.nome | processarEmail }}</h4>
     <h3>Email: {{ cliente.email }}</h3>
     <h3 v-if="showAge">Idade: {{ cliente.idade }}</h3>
     <h3 v-else>O usuário escondeu a idade!</h3>
@@ -40,6 +40,11 @@ export default {
       alert("Isso é um alert")
     }
   },
+  filters: {
+    processarEmail(value){
+      return value.toUpperCase();
+    }
+  }
 };
 </script>
 
