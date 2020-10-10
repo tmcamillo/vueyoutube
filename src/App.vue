@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
     <h1>Cadastro</h1>
     <small class="name-error" v-show="deuErro">O nome é inválido, tente novamente</small>
     <input type="text" placeholder="nome" v-model="nameField" />
@@ -7,14 +8,16 @@
     <input type="number" placeholder="idade" v-model="ageField" />
     <button @click="cadastrarUsuario">Cadastrar</button>
 
-    <div v-for="(cliente, index) in clientes" :key="cliente.id">
+    <div v-for="(cliente, index) in orderClientes" :key="cliente.id">
       <p>{{ index + 1 }}</p>
       <Cliente :cliente="cliente" @meDelete="deletarUsuario($event)"/>
     </div>
+    
   </div>
 </template>
 
 <script>
+import _ from "lodash";
 import Cliente from "./components/Cliente";
 
 export default {
@@ -78,6 +81,11 @@ export default {
       this.clientes = novoArray;
     }
   },
+  computed:{
+    orderClientes(){
+      return _.orderBy(this.clientes, ['nome'], ['asc']);
+    }
+  }
 };
 </script>
 

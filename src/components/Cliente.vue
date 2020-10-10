@@ -11,6 +11,7 @@
     <h3 v-show="showAge">saiba mais</h3>
     <button @click="mudarCor($event)">Mudar cor</button>
     <button @click="emitirEventoDelete()">Deletar</button>
+    <h4>Id Especial {{idSpecial}}</h4>
 
   </div>
 </template>
@@ -43,6 +44,11 @@ export default {
   filters: {
     processarEmail(value){
       return value.toUpperCase();
+    }
+  },
+  computed: {
+    idSpecial(){
+      return(this.cliente.email + this.cliente.nome + this.cliente.id).toUpperCase()
     }
   }
 };
