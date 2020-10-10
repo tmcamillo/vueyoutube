@@ -12,12 +12,11 @@
       <p>{{ index + 1 }}</p>
       <Cliente :cliente="cliente" @meDelete="deletarUsuario($event)"/>
     </div>
-    
+
   </div>
 </template>
 
 <script>
-import _ from "lodash";
 import Cliente from "./components/Cliente";
 
 export default {
@@ -69,7 +68,8 @@ export default {
     cadastrarUsuario() {
       if (this.nameField == "" ||this.nameField == "" ||this.nameField.length == "") {
         this.deuErro = true;
-      } else {
+      } 
+      else {
         this.clientes.push({nome: this.nameField, email: this.emailField, idade: this.ageField, id: Date.now()});
         (this.nameField = ""), (this.emailField = ""), (this.ageField = "");
         this.deuErro = false;
@@ -83,7 +83,9 @@ export default {
   },
   computed:{
     orderClientes(){
-      return _.orderBy(this.clientes, ['nome'], ['asc']);
+      let clientes = Object.assign([],this.clientes) //mantem lista original
+      console.log(clientes.sort((a, b)=> (a.nome.toUpperCase() > b.nome.toUpperCase() ? 1 : -1)))
+      return clientes.sort((a, b)=> (a.nome.toUpperCase() > b.nome.toUpperCase()) ? 1 : -1)
     }
   }
 };
